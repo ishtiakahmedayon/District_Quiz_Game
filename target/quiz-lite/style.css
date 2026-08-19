@@ -1,0 +1,17 @@
+/* Minimal retro/skeleton styling - just readable, nothing fancy. */
+
+body {
+    font-family: "Courier New", monospace;
+    max-width: 600px;
+    margin: 40px auto;
+    background: #f5f5f0;
+    color: #222;
+    border: 1px solid #999;
+    padding: 20px;
+}
+
+h2 { border-bottom: 2px solid #222; padding-bottom: 6px; }
+
+input, button { font-family: inherit; font-size: 1em; }
+
+button { margin-top: 12px; padding: 6px 14px; }
