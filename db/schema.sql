@@ -1,15 +1,22 @@
-
+-- ============================================================
+-- jamalpurquiz_db  --  matches the ERD:
+--   PLAYER  ||--o{  PLAYER_SCORE
+--   QUESTION }o--||  CATEGORY
+--
+-- Run once:   mysql -u root -p < db/schema.sql
+-- ============================================================
 
 CREATE DATABASE IF NOT EXISTS jamalpurquiz_db;
 USE jamalpurquiz_db;
 
-
+-- One row per quiz topic (Crops / Geography / Institutions)
 CREATE TABLE CATEGORY (
     category_id   INT AUTO_INCREMENT PRIMARY KEY,
     category_name VARCHAR(50) NOT NULL
 );
 
-
+-- One row per MCQ question. Linked to CATEGORY so each question
+-- knows which topic it belongs to (crop / geography / institution).
 CREATE TABLE QUESTION (
     question_id    INT AUTO_INCREMENT PRIMARY KEY,
     category_id    INT NOT NULL,
@@ -22,13 +29,16 @@ CREATE TABLE QUESTION (
     FOREIGN KEY (category_id) REFERENCES CATEGORY(category_id)
 );
 
-
+-- One row per player (just their name -- kept separate from
+-- PLAYER_SCORE so the same player could play many times).
 CREATE TABLE PLAYER (
     player_id INT AUTO_INCREMENT PRIMARY KEY,
     name      VARCHAR(50) NOT NULL
 );
 
-
+-- One row per quiz attempt/session. A player can have MANY scores
+-- over time (1-to-many), which is why player_id is a foreign key here
+-- instead of storing score columns directly on PLAYER.
 CREATE TABLE PLAYER_SCORE (
     score_id    INT AUTO_INCREMENT PRIMARY KEY,
     player_id   INT NOT NULL,
@@ -37,10 +47,13 @@ CREATE TABLE PLAYER_SCORE (
     FOREIGN KEY (player_id) REFERENCES PLAYER(player_id)
 );
 
-
+-- ============================================================
+-- Seed data: 3 categories + 5 questions (2 crops, 2 geography,
+-- 1 institution) about Jamalpur district.
+-- ============================================================
 
 INSERT INTO CATEGORY (category_name) VALUES ('Crops'), ('Geography'), ('Institutions');
-s
+-- After the insert above, on a fresh table: 1 = Crops, 2 = Geography, 3 = Institutions
 
 INSERT INTO QUESTION (category_id, question_text, option_a, option_b, option_c, option_d, correct_option) VALUES
 (1, 'Jamalpur''s sandy river chars along the Brahmaputra are especially known for growing which crop?', 'Tea', 'Groundnut (peanut)', 'Coffee', 'Rubber', 'B'),

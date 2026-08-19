@@ -1,5 +1,6 @@
-C:\Users\Pc\Desktop\quiz-lite\src\main\java\com\quiz\dao\PlayerScoreDAO.java
-C:\Users\Pc\Desktop\quiz-lite\src\main\java\com\quiz\dao\QuestionDAO.java
-C:\Users\Pc\Desktop\quiz-lite\src\main\java\com\quiz\model\Question.java
-C:\Users\Pc\Desktop\quiz-lite\src\main\java\com\quiz\servlet\SubmitServlet.java
-C:\Users\Pc\Desktop\quiz-lite\src\main\java\com\quiz\util\DBUtil.java
+C:\Users\Pc\Desktop\quiz-lite2\quiz-lite\src\main\java\com\quiz\dao\PlayerScoreDAO.java
+C:\Users\Pc\Desktop\quiz-lite2\quiz-lite\src\main\java\com\quiz\dao\QuestionDAO.java
+C:\Users\Pc\Desktop\quiz-lite2\quiz-lite\src\main\java\com\quiz\model\PlayerScore.java
+C:\Users\Pc\Desktop\quiz-lite2\quiz-lite\src\main\java\com\quiz\model\Question.java
+C:\Users\Pc\Desktop\quiz-lite2\quiz-lite\src\main\java\com\quiz\servlet\AnswerServlet.java
+C:\Users\Pc\Desktop\quiz-lite2\quiz-lite\src\main\java\com\quiz\util\DBUtil.java

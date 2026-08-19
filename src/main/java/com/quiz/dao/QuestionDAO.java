@@ -1,5 +1,8 @@
 package com.quiz.dao;
 
+import com.quiz.model.Question;
+import com.quiz.util.DBUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,12 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.quiz.model.Question;
-import com.quiz.util.DBUtil;
-
 public class QuestionDAO {
 
-
+    // Loads every question in the QUESTION table (all 5 seed questions).
     public List<Question> getAllQuestions() throws SQLException {
         List<Question> list = new ArrayList<>();
         String sql = "SELECT * FROM QUESTION ORDER BY question_id";

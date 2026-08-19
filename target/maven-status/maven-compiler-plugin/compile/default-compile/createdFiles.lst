@@ -1,5 +1,0 @@
-com\quiz\servlet\SubmitServlet.class
-com\quiz\model\Question.class
-com\quiz\dao\QuestionDAO.class
-com\quiz\util\DBUtil.class
-com\quiz\dao\PlayerScoreDAO.class

@@ -1,8 +1,11 @@
 package com.quiz.dao;
 
+import com.quiz.model.PlayerScore;
 import com.quiz.util.DBUtil;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerScoreDAO {
 
@@ -31,21 +34,27 @@ public class PlayerScoreDAO {
         }
     }
 
-    // ---- Bonus: highest score of all time, with the player's name ----
-    // Returns {name, score} or null if nobody has played yet.
-    public String[] getHighScore() throws SQLException {
+    // ---- Top N scores of all time (used for the home-screen "Top 3" and
+    //      the leaderboard shown after each quiz). Empty list if nobody
+    //      has played yet -- callers just check isEmpty() before printing. ----
+    public List<PlayerScore> getTopScores(int limit) throws SQLException {
+        List<PlayerScore> list = new ArrayList<>();
         String sql = "SELECT p.name, s.total_score FROM PLAYER_SCORE s " +
                      "JOIN PLAYER p ON p.player_id = s.player_id " +
-                     "ORDER BY s.total_score DESC LIMIT 1";
+                     "ORDER BY s.total_score DESC LIMIT ?";
 
         try (Connection con = DBUtil.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
-            if (rs.next()) {
-                return new String[] { rs.getString("name"), String.valueOf(rs.getInt("total_score")) };
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, limit);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    PlayerScore ps2 = new PlayerScore();
+                    ps2.playerName = rs.getString("name");
+                    ps2.totalScore = rs.getInt("total_score");
+                    list.add(ps2);
+                }
             }
-            return null;
         }
+        return list;
     }
 }
